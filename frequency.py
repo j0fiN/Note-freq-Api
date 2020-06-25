@@ -5,9 +5,9 @@ class Note_Freq:
 
 
     def frequency(self):
-        if self.__note.index(' ') != -1:
+        if len(self.__note.split(' '))>1:
             return False
-        if self.__note[0].isnum():
+        if self.__note[0].isdigit():
             return False
         if self.__note[0]=='#':
             return False
@@ -16,10 +16,22 @@ class Note_Freq:
             return False
         keys = ["A", "A#", "B", "C", "C#", "D",
                 "D#", "E", "F", "F#", "G", "G#"]
-        octave_number = self.__note[2:]
+
+        try:
+            octave_number = int(self.__note[2:])
+        except ValueError:
+            try:
+                octave_number = int(self.__note[1:])
+            except ValueError:
+                return False
+
         key = self.__note[:2].upper()
         jumps = octave_number - 4
-        N = keys.index(key) + jumps * 12
-        return 440 * pow(2, N/12)
+        try:
+            N = keys.index(key) + jumps * 12
+        except ValueError:
+            key = self.__note[:1].upper()
+            N = keys.index(key) + jumps * 12
+        return round(440 * pow(2, N/12), 2)
 
 
