@@ -46,6 +46,12 @@ class MyTestCase(unittest.TestCase):
         self.assertEquals(n.N, "G#")
         self.assertEquals(n.octave, 1)
 
+    def test_10(self):
+        n = Note_Freq("G12")
+        n.frequency()
+        print(n.octave)
+        self.assertEquals(False, n.frequency())
+
 
 
 
