@@ -1,0 +1,3 @@
+GET http://localhost:5000/api/G4
+###
+GET http://localhost:5000/api/A12
