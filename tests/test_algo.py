@@ -40,6 +40,12 @@ class MyTestCase(unittest.TestCase):
         n = Note_Freq("G#1")
         self.assertAlmostEqual(103.83, n.frequency(), 1)
 
+    def test_9(self):
+        n = Note_Freq("G#1")
+        n.frequency()
+        self.assertEquals(n.N, "G#")
+        self.assertEquals(n.octave, 1)
+
 
 
 
