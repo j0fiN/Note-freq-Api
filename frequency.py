@@ -18,14 +18,16 @@ class Note_Freq:
             return False
         keys = ["A", "A#", "B", "C", "C#", "D",
                 "D#", "E", "F", "F#", "G", "G#"]
+        if len(self.__note)==4:
+            return False
         try:
-            octave_number = int(self.__note[2:])
+            octave_number = int(self.__note[1:])
         except ValueError:
             try:
-                octave_number = int(self.__note[1:])
+                octave_number = int(self.__note[2:])
             except ValueError:
                 return False
-        if octave_number >9:
+        if octave_number > 9:
             return False
         key = self.__note[:2].upper()
         jumps = octave_number - 4
