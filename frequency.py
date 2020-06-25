@@ -2,6 +2,8 @@ import re
 class Note_Freq:
     def __init__(self, note):
         self.__note = note
+        self.N = None
+        self.octave = None
 
 
     def frequency(self):
@@ -16,7 +18,6 @@ class Note_Freq:
             return False
         keys = ["A", "A#", "B", "C", "C#", "D",
                 "D#", "E", "F", "F#", "G", "G#"]
-
         try:
             octave_number = int(self.__note[2:])
         except ValueError:
@@ -24,7 +25,8 @@ class Note_Freq:
                 octave_number = int(self.__note[1:])
             except ValueError:
                 return False
-
+        if octave_number >9:
+            return False
         key = self.__note[:2].upper()
         jumps = octave_number - 4
         try:
@@ -32,6 +34,8 @@ class Note_Freq:
         except ValueError:
             key = self.__note[:1].upper()
             N = keys.index(key) + jumps * 12
+        self.octave = octave_number
+        self.N = key
         return round(440 * pow(2, N/12), 2)
 
 
